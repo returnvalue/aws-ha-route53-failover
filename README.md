@@ -29,8 +29,7 @@ The system implements a **Failover Routing Policy**:
     ```bash
     terraform init
     terraform apply -auto-approve
-    
-```
+    ```
 
 ## Verification & Testing
 
@@ -41,16 +40,14 @@ To observe the DNS failover logic:
     ```bash
     awslocal route53 list-resource-record-sets --hosted-zone-id <YOUR_HOSTED_ZONE_ID>
     aws route53 list-resource-record-sets --hosted-zone-id <YOUR_HOSTED_ZONE_ID>
-    
-```
+    ```
 
 2.  **Simulate Health Check Failure:**
     In a real scenario, Route53 would detect the endpoint is down. You can monitor the health check status:
     ```bash
     awslocal route53 get-health-check-status --health-check-id <YOUR_HEALTH_CHECK_ID>
     aws route53 get-health-check-status --health-check-id <YOUR_HEALTH_CHECK_ID>
-    
-```
+    ```
 
 3.  **Confirm Routing Policy:**
     Verify that both records have the `Failover` routing policy applied, with one as `PRIMARY` and the other as `SECONDARY`.
